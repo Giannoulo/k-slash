@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { getPhotos } from "./API/apiFunctions";
+import InfiniteScroller from "./Components/InfiniteScroller";
+import Sidemenu from "./Components/Sidemenu";
 
 function App() {
+  // TODO Add type
+  const [photos, setPhotos] = useState<any[]>([]);
+  useEffect(() => {
+    let isMounted = true;
+    getPhotos().then((resolve: any[]) => {
+      if (isMounted) {
+        setPhotos(resolve);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Sidemenu />
+      <InfiniteScroller photos={photos} />
     </div>
   );
 }

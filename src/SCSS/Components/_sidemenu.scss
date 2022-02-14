@@ -1,0 +1,22 @@
+.sidemenu {
+  height: 1024px;
+  width: 90px;
+  background: $gray-2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.sidemenu__logo {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 90px;
+  height: 90px;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,76 @@
+.sidemenu {
+  height: 1024px;
+  width: 90px;
+  background: #3c3c3c;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+}
+
+.sidemenu__logo {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 90px;
+  height: 90px;
+  font-size: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.infinite-scroller {
+  -webkit-column-count: 4;
+          column-count: 4;
+  -webkit-column-gap: 30px;
+          column-gap: 30px;
+  line-height: 4;
+  padding: 50px;
+}
+
+.infinite-scroller > img {
+  width: 100%;
+  height: auto;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+}
+
+.App {
+  height: auto;
+  background: #2b2b2b;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 20px;
+}
+/*# sourceMappingURL=main.css.map */

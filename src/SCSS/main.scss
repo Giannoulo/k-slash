@@ -1,0 +1,22 @@
+@import "variables.scss";
+@import "mixins";
+@import "Components/sidemenu";
+@import "Components/infiniteScroller";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+}
+
+.App {
+  height: auto;
+  background: $gray-1;
+  display: flex;
+  font-size: 20px;
+}
