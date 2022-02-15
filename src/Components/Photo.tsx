@@ -4,7 +4,7 @@ type Props = {
   photo: any;
 };
 const Photo = ({ photo }: Props) => {
-  return <img src={photo.urls.full} alt={photo.alt_description ? photo.alt_description : ""} />;
+  return <img src={photo.urls.small} alt={photo.alt_description ? photo.alt_description : ""} />;
 };
 
 export default Photo;

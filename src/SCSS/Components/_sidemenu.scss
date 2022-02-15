@@ -1,12 +1,19 @@
 .sidemenu {
   height: 1024px;
   width: 90px;
+  min-width: 90px;
   background: $gray-2;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #fff;
+  @include for-phone-only {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 80px;
+  }
 }
 
 .sidemenu__logo {

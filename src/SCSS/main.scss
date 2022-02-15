@@ -15,6 +15,7 @@ body,
 }
 
 .App {
+  min-height: 100%;
   height: auto;
   background: $gray-1;
   display: flex;
