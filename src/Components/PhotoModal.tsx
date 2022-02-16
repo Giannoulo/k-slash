@@ -25,27 +25,36 @@ const PhotoModal = () => {
             <span>{selectedPhoto.alt_description ? selectedPhoto.alt_description : ""}</span>
             <span>{selectedPhoto.user.username ? selectedPhoto.user.username : ""}</span>
           </div>
+          <hr />
           <table className="photo-modal__camera">
-            <tr>
-              <th>Camera Make</th>
-              <th>Camera Model</th>
-              <th>Foxal length</th>
-            </tr>
-            <tr>
-              <td>{selectedPhoto.exif.make ? selectedPhoto.exif.make : ""}</td>
-              <td>{selectedPhoto.exif.model ? selectedPhoto.exif.model : ""}</td>
-              <td>{selectedPhoto.exif.focal_length ? selectedPhoto.exif.focal_length : ""}</td>
-            </tr>
-            <tr>
-              <th>Apperture</th>
-              <th>Shutter Speed</th>
-              <th>ISO</th>
-            </tr>
-            <tr>
-              <td>{selectedPhoto.exif.aperture ? selectedPhoto.exif.aperture : ""}</td>
-              <td>{selectedPhoto.exif.exposure_time ? selectedPhoto.exif.exposure_time : ""}</td>
-              <td>{selectedPhoto.exif.iso ? selectedPhoto.exif.iso : ""}</td>
-            </tr>
+            <thead>
+              <tr>
+                <th>Camera Make</th>
+                <th>Camera Model</th>
+                <th>Foxal length</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{selectedPhoto.exif.make ? selectedPhoto.exif.make : ""}</td>
+                <td>{selectedPhoto.exif.model ? selectedPhoto.exif.model : ""}</td>
+                <td>{selectedPhoto.exif.focal_length ? selectedPhoto.exif.focal_length : ""}</td>
+              </tr>
+            </tbody>
+            <thead>
+              <tr>
+                <th>Apperture</th>
+                <th>Shutter Speed</th>
+                <th>ISO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{selectedPhoto.exif.aperture ? selectedPhoto.exif.aperture : ""}</td>
+                <td>{selectedPhoto.exif.exposure_time ? selectedPhoto.exif.exposure_time : ""}</td>
+                <td>{selectedPhoto.exif.iso ? selectedPhoto.exif.iso : ""}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
