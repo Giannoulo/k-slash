@@ -2,6 +2,7 @@
 @import "mixins";
 @import "Components/sidemenu";
 @import "Components/infiniteScroller";
+@import "Components/photoModal";
 
 * {
   box-sizing: border-box;
@@ -20,4 +21,5 @@ body,
   background: $gray-1;
   display: flex;
   font-size: 20px;
+  font-family: "Roboto", sans-serif;
 }

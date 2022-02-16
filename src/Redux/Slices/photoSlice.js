@@ -6,10 +6,15 @@ export const photoSlice = createSlice({
   initialState: {
     photoArray: [],
     loading: false,
+    selectedPhoto: null,
   },
   reducers: {
     setPhotos: (state, action) => {
       state.photoArray = action.payload;
+      state.loading = false;
+    },
+    setSelectedPhoto: (state, action) => {
+      state.selectedPhoto = action.payload;
       state.loading = false;
     },
     // TODO Add Spinner
@@ -21,7 +26,7 @@ export const photoSlice = createSlice({
 
 // Export selector,actions,reducer
 export const photoSelector = (state) => state.photos;
-export const { setPhotos, loading } = photoSlice.actions;
+export const { setPhotos, setSelectedPhoto, loading } = photoSlice.actions;
 export default photoSlice.reducer;
 
 // Thunks
@@ -32,6 +37,20 @@ export function getPhotos(page) {
     try {
       const response = await unsplashInstance.get(`/photos?per_page=30&page=${page}`);
       dispatch(setPhotos([...photoArray, ...response.data]));
+      // TODO Add local storage persistence
+    } catch (error) {
+      dispatch(loading(false));
+      alert(error);
+    }
+  };
+}
+
+export function getPhotoDetails(id) {
+  return async (dispatch) => {
+    dispatch(loading(true));
+    try {
+      const response = await unsplashInstance.get(`/photos/${id}`);
+      dispatch(setSelectedPhoto(response.data));
       // TODO Add local storage persistence
     } catch (error) {
       dispatch(loading(false));
