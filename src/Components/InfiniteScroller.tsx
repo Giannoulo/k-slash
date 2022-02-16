@@ -1,14 +1,23 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { photoSelector, getPhotos } from "../Redux/Slices/photoSlice";
+import React, {useEffect, useState, useRef} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {photoSelector, getPhotos, getPhotoDetails} from "../Redux/Slices/photoSlice";
 import Photo from "./Photo";
+import {useParams} from "react-router-dom";
 
 const InfiniteScroller = (): JSX.Element => {
-  const { photoArray } = useSelector(photoSelector);
+  const {photoArray} = useSelector(photoSelector);
   const dispatch = useDispatch();
   const [photosJSX, setPhotosJSX] = useState<JSX.Element[] | null>(null);
   const targetDivRef = useRef<HTMLDivElement | null>(null);
   const [intersections, setIntersections] = useState<number>(1);
+
+  // If there is an id param, get photo details and open modal
+  const {id} = useParams();
+  useEffect(() => {
+    if (id !== undefined) {
+      dispatch(getPhotoDetails(id));
+    }
+  }, [id, dispatch]);
 
   /*
   Get the updated JSX photo array based on the photo array 
@@ -48,7 +57,7 @@ const InfiniteScroller = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="infinite-scroller">
+    <div className="image-gallery">
       {photosJSX}
       <div className="target-div" ref={targetDivRef} key="target-div"></div>
     </div>

@@ -1,16 +1,49 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { photoSelector, setSelectedPhoto } from "../Redux/Slices/photoSlice";
+import React, {useRef, useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {
+  photoSelector,
+  setSelectedPhoto,
+  addFavoritePhoto,
+  removeFavoritePhoto,
+} from "../Redux/Slices/photoSlice";
 
 const PhotoModal = () => {
-  const { selectedPhoto } = useSelector(photoSelector);
+  const {selectedPhoto, favoritePhotos} = useSelector(photoSelector);
   const dispatch = useDispatch();
+  const isMounted = useRef<boolean>(false);
+  const [liked, setLiked] = useState(false);
 
-  const handleCloseClick = (e: React.MouseEvent) => {
-    dispatch(setSelectedPhoto(null));
+  const handleCloseClick = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    const element = e.target as HTMLElement;
+    if (element.className === "photo-modal" || element.className === "photo-modal__close-button") {
+      dispatch(setSelectedPhoto(null));
+    }
   };
+
+  useEffect(() => {
+    isMounted.current = true;
+    for (const photo of favoritePhotos) {
+      if (photo.id === selectedPhoto.id) {
+        setLiked(true);
+      }
+    }
+    return () => {
+      isMounted.current = false;
+    };
+  }, [favoritePhotos, selectedPhoto]);
+
+  const handleLikeClick = (e: React.MouseEvent<HTMLElement>) => {
+    if (liked) {
+      dispatch(removeFavoritePhoto(selectedPhoto.id));
+      setLiked(false);
+    } else {
+      dispatch(addFavoritePhoto(selectedPhoto.id));
+    }
+  };
+
   return (
-    <div className="photo-modal">
+    <div className="photo-modal" onClick={handleCloseClick}>
       <div className="photo-modal__content">
         <img
           src={selectedPhoto.urls.small}
@@ -18,8 +51,8 @@ const PhotoModal = () => {
         />
         <div className="photo-modal__details">
           <div className="photo-modal__header">
-            <button>Like</button>
-            <button onClick={handleCloseClick}>Close</button>
+            <button onClick={handleLikeClick}>{liked ? "Unlike" : "Like"}</button>
+            <button className="photo-modal__close-button">Close</button>
           </div>
           <div className="photo-modal__owner">
             <span>{selectedPhoto.alt_description ? selectedPhoto.alt_description : ""}</span>
